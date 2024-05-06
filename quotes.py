@@ -41,6 +41,7 @@ if st.button('Calculate Total'):
     # Sort services by cost in descending order
     sorted_services = sorted(selected_services.items(), key=lambda x: x[1]['Price'], reverse=True)
     total_cost = 0
+    pre_discount_total = 0  # Initialize pre-discount total cost
     total_time = 0
     display_costs = []
     # Apply discounts and calculate total cost and time
@@ -48,10 +49,12 @@ if st.button('Calculate Total'):
         discount = discounts[i] if i < len(discounts) else 0.1  # Use 0.1 if not enough predefined discounts
         discounted_cost = info['Price'] * discount
         total_cost += discounted_cost
+        pre_discount_total += info['Price']  # Sum full price
         total_time += info['Time']
         display_costs.append(f"{info['Size']} {service}: ${info['Price']} ({discount}) --> ${discounted_cost:.2f}, Time: {info['Time']} hrs")
 
     display_costs.append('-' * 30)
+    display_costs.append(f"Pre-Discount Total: ${pre_discount_total:.2f}")  # Display pre-discount total
     display_costs.append(f"Total Cost: ${total_cost:.2f}")
     display_costs.append(f"Total Time: {total_time:.2f} hrs")
 
@@ -59,3 +62,4 @@ if st.button('Calculate Total'):
     cost_display = st.text_area("Selected Services, Costs, and Times",
                                 value='\n'.join(display_costs),
                                 height=300)
+
