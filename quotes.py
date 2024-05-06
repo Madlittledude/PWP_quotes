@@ -5,6 +5,7 @@ import pandas as pd
 data = {
     'House Wash': [100, 200, 300, 500],
     'Patio Wash': [100, 200, 300, 500],
+    'Perimiters': [200, 300, 425, 500],
     'Gutter Clean': [75, 125, 175, 250],
     'Roof Wash': [200, 300, 400, 600],
     'Driveway': [100, 150, 200, 300],
