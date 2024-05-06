@@ -3,17 +3,17 @@ import pandas as pd
 
 # Define the data in a dictionary with nested dictionaries for prices and times
 services_data = {
-    'House Wash': {'Price': [100, 200, 300, 500], 'Time': [1.5, 2, 2.5, 3]},
-    'Patio Wash': {'Price': [100, 200, 300, 500], 'Time': [1, 1.5, 2, 2.5]},
+    'House Wash': {'Price': [100, 200, 300, 500], 'Time': [.75, 1.25, 2, 3]},
+    'Patio Wash': {'Price': [100, 200, 300, 500], 'Time': [1, 1.5, 2, 3]},
     'Perimiters': {'Price': [200, 300, 425, 500], 'Time': [2, 2.5, 3, 3.5]},
     'Gutter Clean': {'Price': [75, 125, 175, 250], 'Time': [0.5, 0.75, 1, 1.25]},
-    'Roof Wash': {'Price': [200, 300, 400, 600], 'Time': [2, 3, 4, 5]},
-    'Driveway': {'Price': [100, 150, 200, 300], 'Time': [1, 1.5, 2, 2.5]},
-    'Walk Way': {'Price': [70, 85, 100, 120], 'Time': [0.5, 0.75, 1, 1.25]},
+    'Roof Wash': {'Price': [200, 300, 400, 600], 'Time': [2, 2.5, 3, 3.5]},
+    'Driveway': {'Price': [100, 150, 200, 300], 'Time': [1.5, 2, 3, 3.5]},
+    'Walk Way': {'Price': [70, 85, 100, 120], 'Time': [1, 2, 3, 3.5]},
     'Car': {'Price': [30, 30, 30, 30], 'Time': [0.25, 0.25, 0.25, 0.25]},
-    'Chimney': {'Price': [15, 20, 25, 35], 'Time': [0.5, 0.75, 1, 1.25]},
-    'Window Wash': {'Price': [20, 50, 60, 80], 'Time': [0.5, 0.75, 1, 1.5]},
-    'Window Screen Repair': {'Price': [5, 20, 30, 50], 'Time': [0.25, 0.5, 0.75, 1]},
+    'Chimney': {'Price': [15, 20, 25, 35], 'Time': [0.25, 0.75, 1, 1.25]},
+    'Window Wash': {'Price': [20, 50, 60, 80], 'Time': [0.25, 0.5, .75, 1]},
+    'Window Screen Repair': {'Price': [5, 20, 30, 50], 'Time': [1, 1.5, 2, 3]},
     'Side Walk': {'Price': [0, 0, 0, 0], 'Time': [0, 0, 0, 0]}
 }
 sizes = ['Small', 'Medium', 'Large', 'XL']
