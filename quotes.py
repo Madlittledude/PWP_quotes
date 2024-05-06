@@ -33,7 +33,7 @@ discounts = [1, 0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]  # Extend as needed for m
 
 # Generate checkboxes and size options
 for service in df.columns:
-    if st.checkbox(f'Select {service}', key=service):
+    if st.checkbox(f'{service}', key=service):
         size = st.selectbox(f'Choose size for {service}', sizes, key=f'size_{service}')
         selected_services[service] = (size, df.at[size, service])
 
