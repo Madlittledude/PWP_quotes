@@ -1,64 +1,61 @@
 import streamlit as st
 import pandas as pd
 
-# Define the data in a DataFrame
-data = {
-    'House Wash': [100, 200, 300, 500],
-    'Patio Wash': [100, 200, 300, 500],
-    'Perimiters': [200, 300, 425, 500],
-    'Gutter Clean': [75, 125, 175, 250],
-    'Roof Wash': [200, 300, 400, 600],
-    'Driveway': [100, 150, 200, 300],
-    'Walk Way': [70, 85, 100, 120],
-    'Car': [30, 30, 30, 30],
-    'Chimney': [15, 20, 25, 35],
-    'Window Wash': [20, 50, 60, 80],
-    'Window Screen Repair': [5, 20, 30, 50],
-    'Side Walk': [0, 0, 0, 0]
+# Define the data in a dictionary with nested dictionaries for prices and times
+services_data = {
+    'House Wash': {'Price': [100, 200, 300, 500], 'Time': [1.5, 2, 2.5, 3]},
+    'Patio Wash': {'Price': [100, 200, 300, 500], 'Time': [1, 1.5, 2, 2.5]},
+    'Perimiters': {'Price': [200, 300, 425, 500], 'Time': [2, 2.5, 3, 3.5]},
+    'Gutter Clean': {'Price': [75, 125, 175, 250], 'Time': [0.5, 0.75, 1, 1.25]},
+    'Roof Wash': {'Price': [200, 300, 400, 600], 'Time': [2, 3, 4, 5]},
+    'Driveway': {'Price': [100, 150, 200, 300], 'Time': [1, 1.5, 2, 2.5]},
+    'Walk Way': {'Price': [70, 85, 100, 120], 'Time': [0.5, 0.75, 1, 1.25]},
+    'Car': {'Price': [30, 30, 30, 30], 'Time': [0.25, 0.25, 0.25, 0.25]},
+    'Chimney': {'Price': [15, 20, 25, 35], 'Time': [0.5, 0.75, 1, 1.25]},
+    'Window Wash': {'Price': [20, 50, 60, 80], 'Time': [0.5, 0.75, 1, 1.5]},
+    'Window Screen Repair': {'Price': [5, 20, 30, 50], 'Time': [0.25, 0.5, 0.75, 1]},
+    'Side Walk': {'Price': [0, 0, 0, 0], 'Time': [0, 0, 0, 0]}
 }
 sizes = ['Small', 'Medium', 'Large', 'XL']
-df = pd.DataFrame(data, index=sizes)
 
 # Streamlit application starts here
-st.title('Service Cost Calculator')
-
-# Container for display
-cost_display = st.empty()
+st.title('Service Cost and Time Calculator')
 
 # Containers for selections and calculations
 selected_services = {}
-service_costs = []
+service_details = []
 
 # Discount factors
-discounts = [1, 0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]  # Extend as needed for more services
+discounts = [1, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]  # Extend as needed
 
 # Generate checkboxes and size options
-for service in df.columns:
+for service, details in services_data.items():
     if st.checkbox(f'{service}', key=service):
-        size = st.selectbox(f'Choose size for {service}', sizes, key=f'size_{service}')
-        selected_services[service] = (size, df.at[size, service])
+        size_index = sizes.index(st.selectbox(f'Choose size for {service}', sizes, key=f'size_{service}'))
+        price = details['Price'][size_index]
+        time = details['Time'][size_index]
+        selected_services[service] = {'Size': sizes[size_index], 'Price': price, 'Time': time}
 
 # Button to calculate total
 if st.button('Calculate Total'):
     # Sort services by cost in descending order
-    sorted_services = sorted(selected_services.items(), key=lambda x: x[1][1], reverse=True)
+    sorted_services = sorted(selected_services.items(), key=lambda x: x[1]['Price'], reverse=True)
     total_cost = 0
+    total_time = 0
     display_costs = []
-    # Apply discounts and calculate total cost
-    for i, (service, (size, cost)) in enumerate(sorted_services):
+    # Apply discounts and calculate total cost and time
+    for i, (service, info) in enumerate(sorted_services):
         discount = discounts[i] if i < len(discounts) else 0.1  # Use 0.1 if not enough predefined discounts
-        discounted_cost = cost * discount
+        discounted_cost = info['Price'] * discount
         total_cost += discounted_cost
-        display_costs.append(f"{size[0]} {service}: {cost} ({discount}) --> {discounted_cost:.2f}")
+        total_time += info['Time']
+        display_costs.append(f"{info['Size']} {service}: ${info['Price']} ({discount}) --> ${discounted_cost:.2f}, Time: {info['Time']} hrs")
+
     display_costs.append('-' * 30)
-    display_costs.append(f"\n\nTotal Cost: ${total_cost:.2f}")
+    display_costs.append(f"Total Cost: ${total_cost:.2f}")
+    display_costs.append(f"Total Time: {total_time:.2f} hrs")
 
     # Update display
-    cost_display.text_area("Selected Services and Costs",
-                           value='\n'.join(display_costs),
-                           height=300)
-    
-    # Display total cost
-    st.write(f'Total Cost: ${total_cost:.2f}')
-
-# Run this script using: streamlit run services_calculator.py
+    cost_display = st.text_area("Selected Services, Costs, and Times",
+                                value='\n'.join(display_costs),
+                                height=300)
