@@ -6,14 +6,14 @@ services_data = {
     'House Wash': {'Price': [100, 200, 300, 500], 'Time': [.75, 1.25, 2, 3]},
     'Patio Wash': {'Price': [100, 200, 300, 500], 'Time': [1, 1.5, 2, 3]},
     'Perimiters': {'Price': [200, 300, 425, 500], 'Time': [2, 2.5, 3, 3.5]},
-    'Gutter Clean': {'Price': [75, 125, 175, 250], 'Time': [0.5, 0.75, 1, 1.25]},
+    'Gutter Clean': {'Price': [175, 250, 300, 400], 'Time': [0.5, 0.75, 1, 1.25]},
     'Roof Wash': {'Price': [200, 300, 400, 600], 'Time': [2, 2.5, 3, 3.5]},
     'Driveway': {'Price': [100, 150, 200, 300], 'Time': [1.5, 2, 3, 3.5]},
     'Walk Way': {'Price': [70, 85, 100, 120], 'Time': [1, 2, 3, 3.5]},
     'Car': {'Price': [30, 30, 30, 30], 'Time': [0.25, 0.25, 0.25, 0.25]},
-    'Chimney': {'Price': [15, 20, 25, 35], 'Time': [0.25, 0.75, 1, 1.25]},
-    'Window Wash': {'Price': [20, 50, 60, 80], 'Time': [0.25, 0.5, .75, 1]},
-    'Window Screen Repair': {'Price': [5, 20, 30, 50], 'Time': [1, 1.5, 2, 3]},
+    'Chimney': {'Price': [50, 75, 100, 125], 'Time': [0.25, 0.75, 1, 1.25]},
+    'Window Wash': {'Price': [30, 60, 80, 100], 'Time': [0.25, 0.5, .75, 1]},
+    'Window Screen Repair': {'Price': [10, 20, 30, 50], 'Time': [1, 1.5, 2, 3]},
     'Side Walk': {'Price': [0, 0, 0, 0], 'Time': [0, 0, 0, 0]}
 }
 sizes = ['Small', 'Medium', 'Large', 'XL']
@@ -26,7 +26,7 @@ selected_services = {}
 service_details = []
 
 # Discount factors
-discounts = [1, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]  # Extend as needed
+discounts = [1, 0.70, 0.75, 0.80, 0.85, 0.9, 0.95, 1]  # Extend as needed
 
 # Generate checkboxes and size options
 for service, details in services_data.items():
