@@ -13,7 +13,7 @@ services_data = {
     'Car': {'Price': [30, 30, 30, 30], 'Time': [0.25, 0.25, 0.25, 0.25]},
     'Chimney': {'Price': [50, 75, 100, 125], 'Time': [0.25, 0.75, 1, 1.25]},
     'Window Wash': {'Price': [30, 60, 80, 100], 'Time': [0.25, 0.5, .75, 1]},
-    'Window Screen Repair': {'Price': [10, 20, 30, 50], 'Time': [1, 1.5, 2, 3]},
+    'Window Screen Repair': {'Price': [100,150,200,300], 'Time': [1, 1.5, 2, 3]},
     'Side Walk': {'Price': [0, 0, 0, 0], 'Time': [0, 0, 0, 0]}
 }
 sizes = ['Small', 'Medium', 'Large', 'XL']
